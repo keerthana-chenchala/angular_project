@@ -1,0 +1,67 @@
+//app.componet.html
+
+<html>
+  <body>
+    <br><br><br><br><br><br><br><br><br>
+    <b>My Account</b><br><br><br>
+    <h1>${{balance}}</h1><br><br>
+    <button (click)="withdraw($event)" [disabled]="d" class="b1">Withdraw $10</button>
+    <button (click)="deposit($event)" class="b2">Deposit $10</button> 
+    <br><br><br><br><br><br><br><br><br><br><br>
+  </body>
+</html>
+
+//app.component.ts
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  })
+export class AppComponent {
+  title = 'exercise1';
+  balance:number=200;
+  d:boolean;
+  withdraw(){
+    if(this.balance==10){
+      this.d=true;
+    }
+    else{
+    this.d=false;
+    }
+    this.balance-=10;
+  }
+  deposit(){
+    if(this.balance>=10)
+    {
+      this.d=false;
+    }
+    else{
+      this.d=true;
+    }
+    this.balance+=10;
+  }
+}
+
+app.component.scss
+
+body{
+    text-align: center;
+    background: rgb(247, 208, 157);
+}
+.b1{
+    background-color: rgb(222, 224, 89);
+    margin:30px;
+    font-size:18px;
+}
+.b2{
+    background-color:rgb(106, 211, 106);
+    font-size:18px;
+    margin:30px;
+}
+b{
+    font-size: 45px;
+}
+
