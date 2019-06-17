@@ -1,0 +1,97 @@
+app.component.html
+
+<html>
+  <body>
+    <div><br><br>
+      <h1>My Library</h1>
+      <span>Title</span>
+      <span>Author</span><br>
+      <input type="text" (keyup)="in1($event)">
+      <input type="text" (keyup)="in2($event)">
+      <button (click)="add($event)">Add</button><br><br>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Delete</th>
+        </tr>
+        <tr>
+          <td>Data science</td>
+          <td>Jhon Doe</td>
+          <td>X</td>
+        </tr>
+        <tr>
+          <td>Big Data</td>
+          <td>R Ramesh</td>
+          <td>X</td>
+        </tr>
+        <tr *ngFor="let row of rows">
+          <td>{{row.title}}</td>
+          <td>{{row.author}}</td>
+          <td>{{row.delete}}</td>
+        </tr>
+      </table>
+    </div><br><br><br>
+  </body>
+</html>
+
+app.component.ts
+
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'exercise3';
+  a:string;
+  b:string;
+  del:string="X";
+  rows =[];
+  in1(event){
+    this.a=event.target.value;
+    return this.a;
+  }
+  in2(event){
+    this.b=event.target.value;
+    return this.b; 
+  }
+  add(){
+    this.rows.push( {title: this.a, author: this.b, delete: this.del } );
+  }
+}
+
+app.component.scss
+
+div{
+    text-align: center;
+}
+body{
+    background-color: rgb(240, 177, 95);
+    width:70%;
+    margin-left:200px;
+}
+span{
+    margin:120px;
+    font-size: 25px;
+}
+input{
+    margin:10px;
+    font-size: 20px;
+    color:darkmagenta;
+}
+button{
+    background-color: rgb(72, 194, 72);
+    font-size: 20px;
+}
+table{
+    margin-left: 300px;
+    font-size:20px;
+    border:1px solid black;
+    background-color: whitesmoke;
+}
+td{
+    border:1px solid black;
+    padding:24px;
+}
