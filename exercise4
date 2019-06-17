@@ -1,0 +1,165 @@
+app.component.html
+
+<html>
+  <body><br><br>
+      <h1>Register</h1>
+    <table name="tab">
+      <tr name="r1">
+      <td><h4>Full Name:</h4>
+      <input type="text" (keyup)="name($event)" required>
+    </td>
+      <td><h4>Date of Birth:</h4>
+      <input type="date" (keyup)="dob($event)" required>
+    </td>
+    </tr>
+    <tr name="r2">
+      <td><h4>Email Address:</h4>
+      <input type="email" (keyup)="email($event)" required></td>
+      <td><h4>Phone Number:</h4>
+      <input type="text" (keyup)="ph($event)" required></td>
+    </tr>
+     <tr name="r3">
+      <td><h4>Password:</h4>
+      <input type="password" (keyup)="pw($event)" required></td>
+      <td><h4>Tell us about yourself:</h4>
+      <textarea rows="3" cols="20"></textarea></td>
+    </tr>
+    <tr name="r4">
+      <td><select (click)="dp($event)" required>
+          <option value="">select your state</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Rajastan">Rajastan</option>
+          <option value="Kerala">Kerala</option>
+          <option value="Telangana">Telangana</option>
+          <option value="Tamilnadu">Tamilnadu</option>
+          <option value="UttarPadesh">UttarPadesh</option>
+      </select></td>
+      <td><input type="radio" name="gender" value="male" (click)="gen($event)" required> Male<br>
+      <input type="radio" name="gender" value="female" (click)="gen($event)" required> Female</td>
+    </tr><br>
+    <tr name="r5">
+      <td colspan="2">
+        <input type="checkbox" (click)="check($event)" required>The above details are true and correct to the best of my knowledge.
+      </td>
+    </tr><br>
+    <tr name="r6"> 
+      <td colspan="2" class="but">
+        <button class="di" (click)="register($event)">Register</button>
+      </td>
+    </tr>
+</table><br><br>
+  </body>
+</html>
+
+app.component.ts
+
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'exercise4';
+  a:string;
+  b:string;
+  e:string;
+  p:number;
+  q:string;
+  ch:boolean=false;
+  x:boolean=false;
+  d:boolean=false;
+ name(u:any){
+   this.a=u.target.value;
+ }
+ dob(c:any){
+  this.b=c.target.value;
+}
+pw(a:any){
+  this.q=a.target.value;
+}
+email(f:any){
+  if(f.target.value.includes("@gmail.com")){
+  this.e=f.target.value;
+}
+else{
+  this.e="";
+}
+}
+ph(q:any){
+  if(q.target.value.length==10 && q.target.value.match('[0-9]')){
+    this.p=q.target.value;
+  }
+  else{
+    this.p=null;
+  }
+}
+check(){
+  this.ch=true;
+}
+gen(){
+  this.x=true;
+}
+dp(){
+  this.d=true;
+}
+register(){
+if(this.a==""){
+  alert("enter your name");
+}
+if(this.p==null){
+  alert("enter valid phone number");
+}
+else if(this.e==""){
+  alert("enter valid email");
+}
+else if(this.q==""){
+  alert("password is madatory");
+}
+else if(this.b==null){
+  alert("enter date of birth");
+}
+else if(this.ch==false){
+  alert("tick the check box");
+}
+else if(this.x==false){
+  alert("Gender is mandatory");
+}
+if(this.d==false){
+  alert("select your state");
+}
+else{
+  alert("registration successful");
+}
+}
+}
+
+app.component.scss
+
+table{
+    background-color:cornsilk;
+    width:410px;
+    border:20px solid yellow;
+}
+h1{
+    color:paleturquoise;
+    text-align: center;
+   
+}
+table,td{
+    margin-left:450px;
+    padding:4px;
+    border-radius: 15px;
+}
+.but{
+    text-align: center;
+}
+.di{
+    background-color: rgb(243, 156, 185);
+    font-size: 20px;
+    border-radius: 10px;
+}
+body{
+    background-color:darkolivegreen;
+}
