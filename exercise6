@@ -1,0 +1,114 @@
+app.component.html
+
+<html>
+  <body><br><br>
+    <div class="main">
+        <h2>Store</h2>
+    <div class="left">
+      <table>
+          <caption>Catalog</caption>
+        <tr>
+          <td>Item<br> {{arra[0]}}<button (click)='itemslist(0)'>Add To Cart</button><br>Rs-{{rs[0]}}</td>
+        </tr>
+        <tr>
+          <td>Item<br> {{arra[1]}}<button  (click)='itemslist(1)'>Add To Cart</button><br>Rs-{{rs[1]}}</td>
+        </tr>
+        <tr>
+          <td>Item<br> {{arra[2]}}<button  (click)='itemslist(2)'>Add To Cart</button><br>Rs-{{rs[2]}}</td>
+        </tr>
+        <tr>
+          <td>Item<br> {{arra[3]}}<button (click)='itemslist(3)'>Add To Cart</button><br>Rs-{{rs[3]}}</td>
+        </tr>
+        </table><br><br>
+      </div>
+      <div class="right">
+        <table>
+            <caption>Cart</caption>
+          <tr *ngFor="let item of cart;let i=index" >
+            <td>Item<br>{{item}}<button (click)="remove(item)">Remove</button><br>Rs-{{k[i]}}</td>
+          </tr>
+      </table><br><br>
+      <table>
+          <caption>Checkout</caption>
+        <tr>
+          <td>Order Total Rs:{{n}} <br>
+          <button (click)="place($event)">Place Order</button></td>
+        </tr>
+      </table><br>
+       </div>
+      </div>
+  </body>
+</html>
+
+app.component.ts
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'exercise6';
+num:string;
+cart:string[]=[];
+i:number;
+j:number;
+n:number=0;
+R:number;
+k:number[]=[];
+arra=["Arrow shirt","Levies Jeans","Nike shoes","Blue saree"];
+rs:number[]=[100,150,200,180];
+  itemslist(order:number){
+    this.num=this.arra[order];
+    this.cart.push(this.arra[order]);
+    this.n=this.n+this.rs[order];
+    this.k.push(this.rs[order]);
+  }
+  remove(item){
+   this.i= this.cart.indexOf(item);
+   this.cart.splice(this.i,1);
+   this.j= this.arra.indexOf(item);
+   this.n=this.n-this.rs[this.j];
+   this.k.splice(this.i,1);
+  }
+  place(){
+    if(this.n!=0)
+    alert("Your order has been placed");
+  }
+}
+
+app.component.scss
+
+body{
+    margin-left:350px;
+}
+table,tr,td{
+border:1px solid black;
+padding: 10px;
+margin-left:70px;
+border-collapse: collapse;
+}
+.left {
+    float: left;
+    width:50%;
+    overflow: hidden;
+  }
+ .right {
+    width:50%;
+    overflow: hidden;
+  }
+  .main{
+      background-color: aquamarine;
+      width:600px;
+      height:550px;
+      border:1px solid black;
+  }
+  h2{
+      margin-left:15px;
+  }
+  caption{
+      font-size:20px;
+      color:rgb(18, 15, 201);
+  }
